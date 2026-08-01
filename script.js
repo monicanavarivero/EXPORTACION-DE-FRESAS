@@ -21,6 +21,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderItems = document.querySelectorAll('.order-item');
     const grandTotalEl = document.getElementById('grandTotal');
     const orderForm = document.getElementById('orderForm');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const confirmationModalMessage = document.getElementById('confirmationModalMessage');
+
+    function openConfirmationModal(message) {
+        if (!confirmationModal || !confirmationModalMessage) {
+            return;
+        }
+
+        confirmationModalMessage.textContent = message;
+        confirmationModal.classList.add('is-open');
+        confirmationModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+    }
+
+    function closeConfirmationModal() {
+        if (!confirmationModal) {
+            return;
+        }
+
+        confirmationModal.classList.remove('is-open');
+        confirmationModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+    }
+
+    confirmationModal?.addEventListener('click', (event) => {
+        if (event.target.closest('[data-close-modal]')) {
+            closeConfirmationModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeConfirmationModal();
+        }
+    });
 
     function calculateTotal() {
         let grandTotal = 0;
@@ -58,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     orderForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const phone = document.getElementById('orderPhone').value;
-        alert(`¡Gracias! Tu pedido con estimado total de ${grandTotalEl.textContent} ha sido recibido. Nos pondremos en contacto al número ${phone}.`);
+        openConfirmationModal(`¡Gracias! Tu pedido con estimado total de ${grandTotalEl.textContent} ha sido recibido. Nos pondremos en contacto al número ${phone}.`);
         orderForm.reset();
         calculateTotal();
     });
@@ -100,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const exportContactForm = document.getElementById('exportContactForm');
     exportContactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Gracias por enviar tu solicitud de exportación. Nuestro equipo comercial se comunicará contigo a la brevedad.');
+        openConfirmationModal('Gracias por enviar tu solicitud de exportación. Nuestro equipo comercial se comunicará contigo a la brevedad.');
         exportContactForm.reset();
     });
 });

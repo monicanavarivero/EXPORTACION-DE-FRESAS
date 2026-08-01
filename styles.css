@@ -456,6 +456,105 @@ body {
     font-family: inherit;
 }
 
+/* ========================================================================== 
+   Modal de Confirmación
+   ========================================================================== */
+.confirmation-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(45, 26, 33, 0.55);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: var(--transicion);
+    z-index: 2000;
+}
+
+.confirmation-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.confirmation-modal__backdrop {
+    position: absolute;
+    inset: 0;
+}
+
+.confirmation-modal__dialog {
+    position: relative;
+    width: min(92vw, 460px);
+    background: linear-gradient(180deg, var(--blanco), var(--rosa-claro));
+    border-radius: 24px;
+    box-shadow: var(--sombra-fuerte);
+    padding: 34px 28px 30px;
+    text-align: center;
+    transform: translateY(14px) scale(0.98);
+    transition: var(--transicion);
+    border: 1px solid rgba(255, 29, 127, 0.12);
+    overflow: hidden;
+}
+
+.confirmation-modal.is-open .confirmation-modal__dialog {
+    transform: translateY(0) scale(1);
+}
+
+.confirmation-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 177, 190, 0.22);
+    color: var(--rosa-fuerte);
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.confirmation-modal__close:hover {
+    background-color: var(--rosa-pastel);
+}
+
+.confirmation-modal__icon {
+    width: 78px;
+    height: 78px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--rosa-fuerte), var(--fucsia-intenso));
+    color: var(--blanco);
+    font-size: 2rem;
+    box-shadow: 0 14px 30px rgba(232, 20, 107, 0.24);
+}
+
+.confirmation-modal__dialog h3 {
+    font-size: 1.5rem;
+    color: var(--texto-oscuro);
+    margin-bottom: 10px;
+}
+
+.confirmation-modal__dialog p {
+    color: #555;
+    margin-bottom: 24px;
+    font-size: 1rem;
+}
+
+.confirmation-modal__button {
+    min-width: 160px;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
 /* ==========================================================================
    Sección Calidad
    ========================================================================== */

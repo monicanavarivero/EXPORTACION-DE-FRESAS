@@ -457,6 +457,25 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <!-- Modal de confirmación -->
+    <div id="confirmationModal" class="confirmation-modal" aria-hidden="true">
+        <div class="confirmation-modal__backdrop" data-close-modal></div>
+        <div class="confirmation-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="confirmationModalTitle"
+            aria-describedby="confirmationModalMessage">
+            <button type="button" class="confirmation-modal__close" data-close-modal aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="confirmation-modal__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 id="confirmationModalTitle">Solicitud enviada</h3>
+            <p id="confirmationModalMessage"></p>
+            <button type="button" class="btn btn-primary confirmation-modal__button" data-close-modal>
+                Entendido
+            </button>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
